@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Anu Janifar | Digital Portfolio</title>
+<meta name="description" content="G. Anu Janifar — Computer Science and Engineering student, builder and technology enthusiast.">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+ --bg:#03050c;--panel:rgba(9,13,28,.72);--line:rgba(103,170,255,.2);
+ --cyan:#5ee7ff;--blue:#4d8dff;--violet:#a66cff;--pink:#ff64d8;
+ --white:#f4f8ff;--muted:#9aa8c4;
+}
+body{
+ background:var(--bg);color:var(--white);font-family:"Space Grotesk",sans-serif;
+ overflow-x:hidden;cursor:default;
+}
+body:before{
+ content:"";position:fixed;inset:0;z-index:-5;
+ background:
+ radial-gradient(circle at 20% 20%,rgba(0,190,255,.13),transparent 25%),
+ radial-gradient(circle at 80% 25%,rgba(150,70,255,.12),transparent 27%),
+ radial-gradient(circle at 50% 90%,rgba(255,40,190,.07),transparent 30%);
+}
+body:after{
+ content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.07;
+ background-image:linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px);
+ background-size:100% 4px;
+}
+canvas{position:fixed;inset:0;z-index:-4;pointer-events:none}
+
+/* NAV */
+nav{
+ position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:100;
+ width:min(1120px,calc(100% - 28px));border:1px solid var(--line);
+ background:rgba(3,5,12,.68);backdrop-filter:blur(20px);
+ border-radius:18px;box-shadow:0 15px 50px rgba(0,0,0,.3)
+}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:13px 18px}
+.logo{font-family:Orbitron;color:white;font-weight:800;letter-spacing:1px}
+.logo i{font-style:normal;color:var(--cyan)}
+.navlinks{display:flex;gap:20px;list-style:none}
+.navlinks a{color:#b9c5dc;text-decoration:none;font-size:13px}
+.navlinks a:hover{color:var(--cyan)}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;
+ max-width:1200px;margin:auto;padding:120px 30px 60px;gap:30px}
+.status{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);
+ padding:7px 11px;border-radius:30px;color:#b9d9ff;font-size:12px;background:rgba(50,100,255,.07)}
+.dot{width:7px;height:7px;border-radius:50%;background:#4dffad;box-shadow:0 0 15px #4dffad}
+.hero h1{font-family:Orbitron;font-size:clamp(42px,7vw,82px);line-height:.98;margin:22px 0 15px}
+.hero h1 span{color:transparent;-webkit-text-stroke:1px var(--cyan);
+ text-shadow:0 0 35px rgba(94,231,255,.2)}
+.role{font-size:22px;color:#cbd7ee;margin-bottom:18px}
+.hero p{max-width:650px;color:var(--muted);font-size:16px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:700;font-size:14px;
+ border:1px solid var(--line);transition:.3s}
+.btn.main{color:#031018;background:linear-gradient(90deg,var(--cyan),#7e9dff)}
+.btn.alt{color:#d9e5ff;background:rgba(255,255,255,.03)}
+.btn:hover{transform:translateY(-4px);box-shadow:0 12px 35px rgba(70,160,255,.2)}
+
+/* 3D HOLOGRAM */
+.holo{height:520px;position:relative;display:grid;place-items:center;perspective:1100px}
+.ring{position:absolute;border:1px solid rgba(94,231,255,.32);border-radius:50%;
+ transform-style:preserve-3d;box-shadow:0 0 30px rgba(94,231,255,.1)}
+.r1{width:360px;height:360px;transform:rotateX(70deg);animation:orbit 9s linear infinite}
+.r2{width:280px;height:280px;transform:rotateY(70deg);animation:orbit 7s linear infinite reverse}
+.r3{width:420px;height:420px;transform:rotateX(70deg) rotateZ(35deg);animation:orbit 14s linear infinite}
+@keyframes orbit{to{transform:rotateX(70deg) rotateZ(360deg)}}
+.core{
+ width:190px;height:190px;position:relative;transform-style:preserve-3d;
+ animation:core 8s ease-in-out infinite;display:grid;place-items:center
+}
+@keyframes core{50%{transform:rotateY(180deg) rotateX(15deg) translateY(-12px)}}
+.core-face{
+ position:absolute;inset:0;border:1px solid rgba(94,231,255,.6);
+ background:linear-gradient(145deg,rgba(20,150,255,.16),rgba(166,108,255,.14));
+ backdrop-filter:blur(10px);border-radius:28px;display:grid;place-items:center;
+ box-shadow:inset 0 0 40px rgba(94,231,255,.08),0 0 60px rgba(76,120,255,.12)
+}
+.core-face span{font-family:Orbitron;font-size:38px;color:var(--cyan);text-shadow:0 0 20px var(--cyan)}
+.core-face small{position:absolute;bottom:22px;font-size:10px;letter-spacing:3px;color:#b8c8e7}
+.badge3d{position:absolute;padding:9px 12px;border:1px solid var(--line);border-radius:10px;
+ background:rgba(8,13,28,.78);backdrop-filter:blur(12px);font:11px Orbitron;color:#cbe8ff}
+.b1{top:60px;right:8%;animation:bob 4s infinite}.b2{bottom:65px;left:2%;animation:bob 5s infinite reverse}
+@keyframes bob{50%{transform:translateY(-14px) rotateY(12deg)}}
+
+/* COMMON */
+section{max-width:1120px;margin:auto;padding:105px 24px}
+.section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:35px}
+.kicker{font:11px Orbitron;letter-spacing:3px;color:var(--cyan)}
+.section-head h2{font:clamp(28px,5vw,45px);margin-top:7px}
+.number{font:12px Orbitron;color:#586784}
+.card{
+ background:linear-gradient(145deg,rgba(14,20,40,.76),rgba(5,9,21,.72));
+ border:1px solid var(--line);border-radius:22px;padding:27px;
+ backdrop-filter:blur(16px);position:relative;overflow:hidden;
+ transition:.35s;box-shadow:0 20px 60px rgba(0,0,0,.15)
+}
+.card:before{content:"";position:absolute;width:100px;height:100px;right:-50px;top:-50px;
+ background:var(--cyan);filter:blur(70px);opacity:.08}
+.card:hover{transform:translateY(-7px) rotateX(1deg);border-color:rgba(94,231,255,.42)}
+.card h3{font-size:21px;margin-bottom:11px}
+.card p,.card li{color:var(--muted);font-size:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+
+/* ABOUT */
+.about-stat{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.stat{padding:10px 13px;border:1px solid var(--line);border-radius:11px;color:#c7d7f2;font-size:12px}
+
+/* SKILLS */
+.skill-wall{display:flex;flex-wrap:wrap;gap:11px}
+.skill{font:12px Orbitron;color:#cdeaff;border:1px solid var(--line);padding:11px 14px;
+ border-radius:10px;background:rgba(80,140,255,.045);transition:.25s}
+.skill:hover{color:#061019;background:var(--cyan);transform:translateY(-4px) rotateX(10deg)}
+
+/* PROJECTS */
+.projects{display:grid;grid-template-columns:1.3fr .7fr;gap:20px}
+.project h3{font-size:26px;color:#fff}
+.tag{display:inline-block;margin:10px 5px 15px 0;padding:5px 9px;border:1px solid var(--line);
+ border-radius:20px;color:#8edfff;font-size:10px}
+.project-links{display:flex;gap:14px;margin-top:22px}
+.project-links a{color:var(--cyan);text-decoration:none;font-weight:700;font-size:13px}
+.codebox{margin-top:20px;border:1px solid var(--line);border-radius:13px;padding:14px;
+ font:12px monospace;color:#8ec9ff;background:#02050c;overflow:hidden}
+.codebox .g{color:#6dffb1}.codebox .p{color:#bd88ff}
+
+/* CERTS / TIMELINE */
+.timeline{display:grid;gap:15px}
+.item{display:grid;grid-template-columns:75px 1fr;gap:20px;align-items:start}
+.year{font:12px Orbitron;color:var(--cyan);padding-top:5px}
+.item .card{padding:21px}
+
+/* TERMINAL */
+.terminal{background:#02050a;border:1px solid #1d3550;border-radius:18px;overflow:hidden;
+ box-shadow:0 20px 70px rgba(0,0,0,.35)}
+.termbar{padding:10px 14px;border-bottom:1px solid #162638;color:#71839c;font:11px monospace}
+.termbar b{color:#ff6b8a}.terminal pre{padding:22px;color:#9be7ff;font:13px/1.8 monospace;white-space:pre-wrap}
+
+/* CONTACT */
+.contact{text-align:center}
+.contact .card{max-width:760px;margin:auto}
+.social{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:22px}
+.social a{color:#dbe7fb;text-decoration:none;border:1px solid var(--line);padding:10px 15px;border-radius:10px}
+.social a:hover{color:var(--cyan);border-color:var(--cyan)}
+footer{border-top:1px solid var(--line);text-align:center;padding:28px;color:#687791;font-size:12px}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:.8s}
+.reveal.show{opacity:1;transform:none}
+
+@media(max-width:800px){
+ nav{top:8px}.navlinks{display:none}.hero{grid-template-columns:1fr;text-align:center;padding-top:130px}
+ .hero p{margin:auto}.cta{justify-content:center}.holo{height:390px}
+ .r1{width:260px;height:260px}.r2{width:205px;height:205px}.r3{width:310px;height:310px}
+ .grid2,.projects{grid-template-columns:1fr}.section-head{display:block}.number{margin-top:10px}
+ .item{grid-template-columns:55px 1fr}
+}
+</style>
+</head>
+
+<body>
+<canvas id="space"></canvas>
+
+<nav>
+ <div class="nav">
+  <div class="logo">ANU<i>.DEV</i></div>
+  <ul class="navlinks">
+   <li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li>
+   <li><a href="#projects">Projects</a></li><li><a href="#learning">Learning</a></li>
+   <li><a href="#contact">Contact</a></li>
+  </ul>
+ </div>
+</nav>
+
+<main>
+<section class="hero" id="home">
+ <div class="reveal">
+  <div class="status"><span class="dot"></span> OPEN TO LEARNING & BUILDING</div>
+  <h1>G. Anu<br><span>Janifar</span></h1>
+  <div class="role">B.Tech 2nd Year · Computer Science & Engineering</div>
+  <p>
+   I turn ideas into experiments, experiments into projects, and projects into
+   experience. I’m exploring software development, AI and problem solving.
+  </p>
+  <div class="cta">
+   <a class="btn main" href="#projects">Explore My Work ↗</a>
+   <a class="btn alt" href="https://github.com/anujanifar-g" target="_blank">GitHub ↗</a>
+  </div>
+ </div>
+
+ <div class="holo reveal">
+  <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
+  <div class="badge3d b1">AI / CSE</div>
+  <div class="badge3d b2">&lt; BUILD / LEARN / GROW &gt;</div>
+  <div class="core">
+   <div class="core-face"><span>&lt;/&gt;</span><small>ANU // CSE</small></div>
+  </div>
+ </div>
+</section>
+
+<section id="about">
+ <div class="section-head reveal"><div><div class="kicker">01 / IDENTITY</div><h2>More than a student.</h2></div><div class="number">ABOUT_ME.exe</div></div>
+ <div class="grid2">
+  <div class="card reveal">
+   <h3>Who I Am</h3>
+   <p>
+    I’m G. Anu Janifar, a B.Tech 2nd-year Computer Science and Engineering
+    student. I enjoy learning technologies and applying concepts through
+    practical projects.
+   </p>
+   <div class="about-stat"><span class="stat">CSE Student</span><span class="stat">Project Builder</span><span class="stat">AI Explorer</span></div>
+  </div>
+  <div class="card reveal">
+   <h3>My Philosophy</h3>
+   <p>
+    I believe the best learning happens when theory meets practice. I’m
+    building my fundamentals in programming, data structures, web development,
+    GitHub and AI while continuously experimenting with new ideas.
+   </p>
+  </div>
+ </div>
+</section>
+
+<section id="skills">
+ <div class="section-head reveal"><div><div class="kicker">02 / TOOLKIT</div><h2>My tech universe.</h2></div><div class="number">SKILLS.json</div></div>
+ <div class="card reveal">
+  <div class="skill-wall">
+   <span class="skill">C Programming</span><span class="skill">Java</span><span class="skill">Python</span>
+   <span class="skill">Data Structures</span><span class="skill">Algorithms</span><span class="skill">HTML</span>
+   <span class="skill">CSS</span><span class="skill">JavaScript</span><span class="skill">Git</span>
+   <span class="skill">GitHub</span><span class="skill">AI</span><span class="skill">OCR</span>
+   <span class="skill">Computer Vision</span><span class="skill">Problem Solving</span>
+  </div>
+ </div>
+</section>
+
+<section id="projects">
+ <div class="section-head reveal"><div><div class="kicker">03 / BUILDS</div><h2>Things I’ve built.</h2></div><div class="number">PROJECTS/</div></div>
+ <div class="projects">
+  <div class="card project reveal">
+   <h3>Smart Label Checker</h3>
+   <span class="tag">AI</span><span class="tag">OCR</span><span class="tag">Computer Vision</span><span class="tag">SIH</span>
+   <p>
+    An AI-based packaged commodity compliance checking prototype. It combines
+    camera input, OCR and a rule-based engine to extract important label
+    information and identify missing or non-compliant details.
+   </p>
+   <div class="codebox"><span class="p">system</span>.<span class="g">scan</span>(label);<br>
+   <span class="p">ocr</span> → extract information<br><span class="p">rules</span> → check compliance<br>
+   <span class="g">result</span> → valid / missing / non-compliant</div>
+   <div class="project-links">
+    <a href="https://anujanifar-g.github.io/Smart-label-checker/" target="_blank">LIVE DEMO →</a>
+    <a href="https://github.com/anujanifar-g/Smart-label-checker" target="_blank">GITHUB →</a>
+   </div>
+  </div>
+
+  <div class="card project reveal">
+   <h3>AI Study Assistant</h3>
+   <span class="tag">AI</span><span class="tag">EDTECH</span>
+   <p>
+    A study-focused assistant concept for organizing technical topics and
+    presenting structured explanations for learning.
+   </p>
+   <div class="project-links"><a href="#contact">EXPLORATION →</a></div>
+  </div>
+ </div>
+</section>
+
+<section id="learning">
+ <div class="section-head reveal"><div><div class="kicker">04 / JOURNEY</div><h2>Learning log.</h2></div><div class="number">/CERTIFICATIONS</div></div>
+ <div class="timeline">
+  <div class="item reveal"><div class="year">01</div><div class="card"><h3>C Programming</h3><p>Certification completed with focus on programming fundamentals and problem solving.</p></div></div>
+  <div class="item reveal"><div class="year">02</div><div class="card"><h3>Data Structures</h3><p>Certification completed covering core data structures and algorithmic concepts.</p></div></div>
+  <div class="item reveal"><div class="year">03</div><div class="card"><h3>Generative AI Workshop</h3><p>Participated in a Generative AI workshop and explored practical applications of AI tools.</p></div></div>
+  <div class="item reveal"><div class="year">NOW</div><div class="card"><h3>Currently Exploring</h3><p>Python, web development, Git/GitHub, AI and software engineering practices.</p></div></div>
+ </div>
+</section>
+
+<section id="education">
+ <div class="section-head reveal"><div><div class="kicker">05 / EDUCATION</div><h2>Where I’m growing.</h2></div><div class="number">EDUCATION.log</div></div>
+ <div class="grid2">
+  <div class="card reveal"><h3>B.Tech — Computer Science & Engineering</h3><p>Dhanekula Institute of Engineering and Technology</p><p style="margin-top:8px">2nd Year · CSE</p></div>
+  <div class="terminal reveal">
+   <div class="termbar"><b>●</b> anu@portfolio:~</div>
+   <pre>$ whoami
+G. Anu Janifar
+
+$ focus
+learn → build → improve
+
+$ interests
+software development
+artificial intelligence
+problem solving
+
+$ next
+keep building.</pre>
+  </div>
+ </div>
+</section>
+
+<section id="more">
+ <div class="section-head reveal"><div><div class="kicker">06 / HUMAN SIDE</div><h2>Beyond the code.</h2></div><div class="number">PROFILE.data</div></div>
+ <div class="grid2">
+  <div class="card reveal"><h3>Strengths</h3><ul><li>Quick learner</li><li>Good observer</li><li>Problem-solving mindset</li><li>Team collaboration</li><li>Consistent learner</li></ul></div>
+  <div class="card reveal"><h3>Growing Areas</h3><ul><li>Strengthening programming fundamentals</li><li>Improving coding speed</li><li>Exploring advanced tools</li><li>Building confidence with new technologies</li></ul></div>
+  <div class="card reveal"><h3>Hobbies & Interests</h3><ul><li>Learning new technologies</li><li>Coding and building projects</li><li>Exploring AI tools</li><li>Creating technical content</li><li>Listening to music</li></ul></div>
+  <div class="card reveal"><h3>Career Direction</h3><p>To grow into a skilled software engineer who can design useful technology solutions and keep learning with the industry.</p></div>
+ </div>
+</section>
+
+<section id="contact">
+ <div class="section-head reveal"><div><div class="kicker">07 / CONNECT</div><h2>Let’s build what’s next.</h2></div><div class="number">CONTACT.init()</div></div>
+ <div class="card contact reveal">
+  <p>Interested in technology, software development, AI and meaningful projects.</p>
+  <div class="social">
+   <a href="https://github.com/anujanifar-g" target="_blank">GitHub ↗</a>
+   <a href="https://www.linkedin.com/" target="_blank">LinkedIn ↗</a>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>© 2026 G. Anu Janifar · Designed & built with HTML, CSS and JavaScript</footer>
+
+<script>
+/* STAR FIELD */
+const c=document.getElementById("space"),x=c.getContext("2d");
+let w,h,stars=[];
+function resize(){w=c.width=innerWidth;h=c.height=innerHeight}
+resize();addEventListener("resize",resize);
+for(let i=0;i<130;i++)stars.push({x:Math.random(),y:Math.random(),r:Math.random()*1.5+.2,s:Math.random()*.25+.04});
+function draw(){
+ x.clearRect(0,0,w,h);
+ stars.forEach(s=>{
+  s.y+=s.s/1000;if(s.y>1)s.y=0;
+  x.beginPath();x.arc(s.x*w,s.y*h,s.r,0,Math.PI*2);
+  x.fillStyle="rgba(120,205,255,.7)";x.fill();
+ });
+ requestAnimationFrame(draw)
+}draw();
+
+/* SCROLL REVEAL */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("show")}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(e=>io.observe(e));
+
+/* HERO HOLOGRAM PARALLAX */
+const holo=document.querySelector(".holo");
+addEventListener("mousemove",e=>{
+ const rx=(e.clientY/innerHeight-.5)*-8;
+ const ry=(e.clientX/innerWidth-.5)*10;
+ holo.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg)`;
+});
+</script>
+</body>
+</html>
